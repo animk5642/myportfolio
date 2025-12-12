@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anirudh M K - Robotics & Embedded Systems Engineer</title>
+    <title>Anirudh M K - Computer Science Engineering Student</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -44,6 +44,58 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 20px var(--primary-glow);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--primary-glow);
         }
 
         * {
@@ -137,11 +189,13 @@
             transition: width 0.3s;
         }
 
-        .nav-links a:hover:after {
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
             width: 100%;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--primary);
         }
 
@@ -213,7 +267,9 @@
             font-size: 16px;
             transition: all 0.3s;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             border-radius: 8px;
             font-weight: 600;
             position: relative;
@@ -335,16 +391,26 @@
         .tech-item {
             color: var(--primary);
             font-size: 14px;
-            padding: 8px 16px;
+            padding: 10px 18px;
             background: rgba(0, 212, 255, 0.1);
-            border-radius: 20px;
+            border-radius: 25px;
             border: 1px solid rgba(0, 212, 255, 0.3);
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .tech-item::before {
+            content: '⚡';
+            font-size: 16px;
         }
 
         .tech-item:hover {
             background: rgba(0, 212, 255, 0.2);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
 
         /* Section Styling */
@@ -691,6 +757,39 @@
             font-size: 48px;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-image.img-signspeak {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1528372444006-1bfc81acab02?w=600&h=400&fit=crop');
+        }
+        
+        .project-image.img-drone {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1508444845599-5c89863b1c44?w=600&h=400&fit=crop');
+        }
+        
+        .project-image.img-fruit {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=600&h=400&fit=crop');
+        }
+        
+        .project-image.img-portfolio {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop');
+        }
+        
+        .project-image.img-robotic-hand {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=600&h=400&fit=crop');
+        }
+        
+        .project-image.img-mapping {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&h=400&fit=crop');
+        }
+        
+        .project-image i {
+            font-size: 64px;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .project-image::before {
@@ -852,12 +951,41 @@
             text-decoration: none;
             transition: all 0.3s;
             border: 1px solid var(--dark-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
         }
 
         .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
             box-shadow: 0 10px 25px var(--primary-glow);
+            border-color: var(--primary);
+        }
+        
+        .social-link.linkedin:hover {
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.5);
+        }
+        
+        .social-link.github:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
         }
 
         /* Footer */
@@ -934,15 +1062,27 @@
 
             .btn {
                 text-align: center;
+                justify-content: center;
             }
 
             .hero-text h1 {
                 font-size: 32px;
             }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -978,8 +1118,12 @@
                         that bridge embedded systems with intelligent automation.
                     </p>
                     <div class="buttons">
-                        <a href="#contact" class="btn btn-primary">Hire Me</a>
-                        <a href="#" class="btn btn-secondary">Download Resume</a>
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Hire Me
+                        </a>
+                        <a href="#" onclick="alert('Resume download will be available soon! Contact me at anirudhmk822@gmail.com'); return false;" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
                     </div>
                     <div class="tech-stack">
                         <span class="tech-item">Python</span>
@@ -997,10 +1141,7 @@
                         <div class="shape shape-2"></div>
                     </div>
                     <div class="profile-circle">
-                        <div class="placeholder-image">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <img src="anirudh.jpg" alt="Anirudh M K"> 
+                        <img src="anirudh.jpg" alt="Anirudh M K" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-image\'><i class=\'fas fa-user\'></i></div>';">
                     </div>
                 </div>
             </div>
@@ -1211,7 +1352,7 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-comments"></i></div>
+                    <div class="project-image img-signspeak"><i class="fas fa-sign-language"></i></div>
                     <div class="project-content">
                         <span class="project-status status-ongoing">IN DEVELOPMENT</span>
                         <h3>Sign Speak: Real-Time Translator</h3>
@@ -1226,7 +1367,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-helicopter"></i></div>
+                    <div class="project-image img-drone"><i class="fas fa-helicopter"></i></div>
                     <div class="project-content">
                         <span class="project-status status-ongoing">ONGOING</span>
                         <h3>NIDAR: Dual-Drone Disaster System</h3>
@@ -1241,7 +1382,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-apple-alt"></i></div>
+                    <div class="project-image img-fruit"><i class="fas fa-robot"></i></div>
                     <div class="project-content">
                         <span class="project-status status-completed">COMPLETED</span>
                         <h3>Automated Fruit Sorting System</h3>
@@ -1256,7 +1397,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-globe"></i></div>
+                    <div class="project-image img-portfolio"><i class="fas fa-laptop-code"></i></div>
                     <div class="project-content">
                         <span class="project-status status-completed">COMPLETED</span>
                         <h3>Personal Portfolio Website</h3>
@@ -1271,7 +1412,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-hand-paper"></i></div>
+                    <div class="project-image img-robotic-hand"><i class="fas fa-hand-paper"></i></div>
                     <div class="project-content">
                         <span class="project-status status-completed">COMPLETED</span>
                         <h3>Wireless Gesture-Controlled Robotic Hand</h3>
@@ -1286,7 +1427,7 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="project-image img-mapping"><i class="fas fa-map-marked-alt"></i></div>
                     <div class="project-content">
                         <span class="project-status status-completed">COMPLETED</span>
                         <h3>Autonomous Mapping Drone</h3>
@@ -1381,14 +1522,17 @@
                     </div>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/anirudh-m-k-0b1755280" target="_blank" class="social-link" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/anirudh-m-k-0b1755280" target="_blank" class="social-link linkedin" title="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://github.com/anirudhmk" target="_blank" class="social-link" title="GitHub">
+                    <a href="https://github.com/anirudhmk" target="_blank" class="social-link github" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:anirudhmk822@gmail.com" class="social-link" title="Email">
+                    <a href="mailto:anirudhmk822@gmail.com" class="social-link email" title="Email">
                         <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+918547044716" class="social-link phone" title="Phone">
+                        <i class="fas fa-phone"></i>
                     </a>
                 </div>
             </div>
@@ -1398,4 +1542,11 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Anirudh M K.
+            <p>&copy; 2025 Anirudh M K. All rights reserved. | Built with passion for innovation</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
